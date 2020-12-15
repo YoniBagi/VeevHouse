@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="houseMapFragmentViewModel"
+            type="com.veevassignment.fragments.houseMap.HouseMapFragmentViewModel" />
+
+        <variable
+            name="veevHouse"
+            type="com.veevassignment.dataModel.VeevHouse" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".fragments.houseMap.HouseMapFragment">
+
+        <TextView
+            android:id="@+id/titleHouseMap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:maxLength="20"
+            android:text="@{veevHouse.houseName}"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="my house" />
+
+        <ImageView
+            android:id="@+id/ivDollHouse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/ic_dollhouse"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleHouseMap" />
+
+        <TextView
+            android:id="@+id/officeDollHouse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{veevHouse.rooms.get(0).name}"
+            app:layout_constraintBottom_toBottomOf="@+id/ivDollHouse"
+            app:layout_constraintEnd_toEndOf="@+id/ivDollHouse"
+            app:layout_constraintStart_toStartOf="@+id/ivDollHouse"
+            app:layout_constraintTop_toTopOf="@+id/ivDollHouse"
+            app:layout_constraintVertical_bias="0.25"
+            tools:text="Office" />
+
+        <TextView
+            android:id="@+id/livingRoomDollHouse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{veevHouse.rooms.get(1).name}"
+            app:layout_constraintBottom_toBottomOf="@+id/ivDollHouse"
+            app:layout_constraintEnd_toEndOf="@+id/ivDollHouse"
+            app:layout_constraintStart_toStartOf="@+id/ivDollHouse"
+            app:layout_constraintTop_toTopOf="@+id/ivDollHouse"
+            app:layout_constraintVertical_bias="0.70"
+            tools:text="Living Room" />
+
+        <Button
+            android:id="@+id/btnOffice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@{veevHouse.rooms.get(0).name}"
+            app:layout_constraintEnd_toStartOf="@+id/btnLivingRoom"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivDollHouse"
+            tools:text="Office"
+            android:onClick="@{_ -> houseMapFragmentViewModel.proceedToOfficeRoomScreen()}"/>
+
+        <Button
+            android:id="@+id/btnLivingRoom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@{veevHouse.rooms.get(1).name}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btnOffice"
+            app:layout_constraintTop_toBottomOf="@+id/ivDollHouse"
+            tools:text="LivingRoom"
+            android:onClick="@{_ -> houseMapFragmentViewModel.proceedToLivingRoomScreen()}"/>
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|bottom"
+            android:indeterminate="true"
+            android:visibility="@{houseMapFragmentViewModel.dataFetchingProgressMLD ? View.VISIBLE : View.GONE}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:text="@string/error_fetch_data"
+            android:textColor="@color/errorRedColor"
+            android:textSize="18sp"
+            android:visibility="@{houseMapFragmentViewModel.errorMLD ? View.VISIBLE : View.GONE}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

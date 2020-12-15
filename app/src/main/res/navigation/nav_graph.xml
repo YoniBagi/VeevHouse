@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/houseMapFragment">
+
+    <fragment
+        android:id="@+id/houseMapFragment"
+        android:name="com.veevassignment.fragments.houseMap.HouseMapFragment"
+        android:label="fragment_house_map"
+        tools:layout="@layout/fragment_house_map" >
+        <action
+            android:id="@+id/action_houseMapFragment_to_roomMapFragment"
+            app:destination="@id/roomMapFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/roomMapFragment"
+        android:name="com.veevassignment.fragments.roomMap.RoomMapFragment"
+        android:label="fragment_room_map"
+        tools:layout="@layout/fragment_room_map"/>
+</navigation>
